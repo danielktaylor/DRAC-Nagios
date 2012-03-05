@@ -4,9 +4,9 @@ DRAC-Nagios
 
 About
 
-	DRAC-Nagios is a set of python scripts to monitor DRAC5 and DRAC6 cards via their SSH interfaces. The return codes are aligned with those expected by Nagios. SSH was found to be the only reliable method of collecting a reliable status from our older DRAC5-based cards. The DRAC cards are rather underpowered, so it can take a minute or two for the script to finish.
+	DRAC-Nagios is a set of python scripts to monitor DRAC5 and DRAC6 cards via their SSH interfaces. The return codes are aligned with those expected by Nagios. SSH was found to be the only reliable method of collecting a valid status from the older DRAC5-based cards. The DRAC cards are rather underpowered, so it can take a minute or two for the script to finish.
 
-	Nagios is not required to use the scripts.
+	Nagios is not required to use the scripts. (You could put these into a crontab)
 
 Required libraries
 
