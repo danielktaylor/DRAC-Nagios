@@ -38,7 +38,7 @@ if __name__=='__main__':
 		ssh.connect(options.host,username=options.username,password=options.password)
 		
 		# Check status
-		stdin, stdout, stderr = ssh.exec_command('show system1')
+		stdin, stdout, stderr = ssh.exec_command('show -d properties system1')
 		output = ''.join(stdout.readlines())
 		
 		if not re.match(healthy_status,output,re.DOTALL):
