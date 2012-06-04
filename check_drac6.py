@@ -40,9 +40,21 @@ if __name__=='__main__':
 		# Check status
 		stdin, stdout, stderr = ssh.exec_command('show -d properties system1')
 		output = ''.join(stdout.readlines())
-		
+
 		if not re.match(healthy_status,output,re.DOTALL):
-			nagios_return('CRITICAL', 'Health or operational status failure detected.')
+			stdin, stdout, stderr = ssh.exec_command('show -d targets system1/logs1/log1')
+			output = ''.join(stdout.readlines())
+			records = re.match(r'.*record@1-(\d+).*', output, re.DOTALL)
+			if not records:
+				nagios_return('CRITICAL', 'Health or operational status failure detected.')
+			else:
+				stdin, stdout, stderr = ssh.exec_command('show -d properties=RecordData system1/logs1/log1/record' + records.group(1))
+				output = ''.join(stdout.readlines())
+				message = re.match(r'.*RecordData = (?:\*\d\*)?(.*)$', output, re.DOTALL)
+				if message:
+					nagios_return('CRITICAL', message.group(1))
+				else:
+					nagios_return('CRITICAL', 'Unknown health or operational status failure detected.')
 		
 		nagios_return('OK', 'All checks passed.')
 	except socket.gaierror, e:
