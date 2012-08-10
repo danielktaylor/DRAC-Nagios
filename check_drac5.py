@@ -4,6 +4,13 @@ import re, optparse, sys, paramiko, socket
 # DRAC Command prefix
 cmd_prefix = 'smclp show system1/'
 
+# Ignore these errors
+# Key: host
+# Value: list of components to skip
+ignore = {
+	'rac-rt03.research.pan.ime.reuters.com':['fans1/tachsensor4'],
+}
+
 # Component sensors to check
 components = [
 	# Batteries
@@ -124,6 +131,8 @@ if __name__=='__main__':
 		ssh.connect(options.host,username=options.username,password=options.password)
 
 		for device in components:
+			if options.host in ignore and device in ignore[options.host]:
+				continue
 			test_component(ssh, device)
 
 		nagios_return('OK', 'All checks passed.')
