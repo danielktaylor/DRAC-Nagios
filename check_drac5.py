@@ -8,7 +8,7 @@ cmd_prefix = 'smclp show system1/'
 # Key: host
 # Value: list of components to skip
 ignore = {
-	'rac-rt03.research.pan.ime.reuters.com':['fans1/tachsensor4'],
+	'mymachine.mycompany.com':['fans1/tachsensor4'],
 }
 
 # Component sensors to check
