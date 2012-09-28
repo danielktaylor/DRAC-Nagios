@@ -2,13 +2,13 @@
 
 ### About
 
-    DRAC-Nagios is a set of python scripts to monitor DRAC5 and DRAC6 cards via their SSH interfaces. The return codes are aligned with those expected by Nagios. SSH was found to be the only reliable method of collecting a valid status from the older DRAC5-based cards. The DRAC cards are rather underpowered, so it can take a minute or two for the script to finish.
+DRAC-Nagios is a set of python scripts to monitor DRAC5 and DRAC6 cards via their SSH interfaces. The return codes are aligned with those expected by Nagios. SSH was found to be the only reliable method of collecting a valid status from the older DRAC5-based cards. The DRAC cards are rather underpowered, so it can take a minute or two for the script to finish.
 
-	Nagios is not required to use the scripts. (You could put these into a crontab)
+Nagios is not required to use the scripts. (You could put these into a crontab)
 
 ### Required libraries
 
-	The scripts require the python paramiko library.
+The scripts require the python paramiko library.
 
 	Installation:
 		Debian-based systems:  apt-get install python-paramiko
@@ -16,11 +16,11 @@
 
 ### Configuration
 
-	You can edit the checks done by the DRAC5 script by editing the 'components' variable. These components will be checked on every host. Non-existing components will be ignored.
+You can edit the checks done by the DRAC5 script by editing the 'components' variable. These components will be checked on every host. Non-existing components will be ignored.
 
-	The DRAC6 script is more simple and just checks the Health and Operational Status codes of the DRAC card.
+The DRAC6 script is more simple and just checks the Health and Operational Status codes of the DRAC card.
 
 ### Nagios Configuration
 
-	You may find Nagios timing out if the scripts take too long to run their checks. You can increase the timeout by editing the 'service_check_timeout' parameter in your nagios.cfg settings file and restarting Nagios.
+You may find Nagios timing out if the scripts take too long to run their checks. You can increase the timeout by editing the 'service_check_timeout' parameter in your nagios.cfg settings file and restarting Nagios.
 
